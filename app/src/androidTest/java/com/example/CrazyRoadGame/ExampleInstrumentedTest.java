@@ -1,4 +1,4 @@
-package com.example.crazyroadgame;
+package com.example.CrazyRoadGame;
 
 import android.content.Context;
 

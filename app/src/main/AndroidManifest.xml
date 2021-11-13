@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.crazyroadgame">
+    package="com.example.CrazyRoadGame">
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
 
     <application
         android:allowBackup="true"
@@ -9,11 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CrazyRoadGame">
+
         <activity
-            android:name=".TheGame"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name="com.example.CrazyRoadGame.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

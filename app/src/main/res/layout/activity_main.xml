@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:background="@drawable/background1" >
 
 
     <LinearLayout
@@ -14,42 +15,19 @@
         android:layout_weight="2"
         android:orientation="horizontal" >
 
-
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/main_BTN_exit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button"
-                />
-
-            <RadioButton
-                android:id="@+id/main_RBTN_sound"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="RadioButton" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
             android:orientation="horizontal"
-            android:layout_margin="15">
+            android:layout_marginLeft="5dp"
+            android:layout_marginVertical="15dp">
 
             <ImageView
                 android:id="@+id/main_BTN_life1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:srcCompat="@drawable/heart_full"
+                tools:srcCompat="@drawable/heart_full" />
 
             <ImageView
                 android:id="@+id/main_BTN_life2"
@@ -64,15 +42,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:srcCompat="@drawable/heart_full" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/main_BTN_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="TextView" />
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -91,35 +65,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                tools:srcCompat="@drawable/poop"   />
+                tools:srcCompat="@drawable/poop" />
 
             <ImageView
                 android:id="@+id/main_IMG_rock10"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                tools:srcCompat="@drawable/poop"  />
+                tools:srcCompat="@drawable/poop" />
 
             <ImageView
                 android:id="@+id/main_IMG_rock20"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                tools:srcCompat="@drawable/poop"   />
+                tools:srcCompat="@drawable/poop" />
 
             <ImageView
                 android:id="@+id/main_IMG_rock30"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                tools:srcCompat="@drawable/poop"   />
+                tools:srcCompat="@drawable/poop" />
 
             <ImageView
                 android:id="@+id/main_IMG_rock40"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                tools:srcCompat="@drawable/poop"  />
+                tools:srcCompat="@drawable/poop" />
 
         </LinearLayout>
 
@@ -133,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                tools:srcCompat="@drawable/poop"  />
+                tools:srcCompat="@drawable/poop" />
 
             <ImageView
                 android:id="@+id/main_IMG_rock11"
@@ -217,30 +191,30 @@
         android:orientation="horizontal" >
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/main_IMG_playerLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:srcCompat="@drawable/car1"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:adjustViewBounds="true"  />
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/main_IMG_playerCenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:srcCompat="@drawable/car1"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:adjustViewBounds="true" />
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/main_IMG_playerRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:srcCompat="@drawable/car1"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:adjustViewBounds="true" />
 
     </LinearLayout>
