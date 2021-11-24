@@ -10,7 +10,7 @@ public class Rock {
 
     public Rock() {
         Random r = new Random();
-        col = r.nextInt(3);
+        col = r.nextInt(5);
         row = 0;
     }
 

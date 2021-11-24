@@ -2,14 +2,13 @@ package com.example.CrazyRoadGame;
 
 
 public class Player {
-    public enum POS{LEFT,CENTER,RIGHT}
 
-    private POS pos;
+    private int pos;
     private int numOfLife;
 
 
     public Player(){
-        pos=POS.CENTER;
+        pos=2;
         numOfLife=3;
     }
 
@@ -21,11 +20,11 @@ public class Player {
         --numOfLife;
     }
 
-    public POS getPos() {
+    public int getPos() {
         return pos;
     }
 
-    public void setPos(POS pos) {
+    public void setPos(int pos) {
         this.pos = pos;
     }
 
