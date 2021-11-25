@@ -7,7 +7,6 @@
     tools:context=".MainActivity">
 
     //background image
-
     <ImageView
         android:id="@+id/main_IMG_background"
         android:layout_width="match_parent"
@@ -15,7 +14,6 @@
 
 
     //main layout
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,14 +21,14 @@
 
 
         //hearts and tools view(top)
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
             android:orientation="horizontal">
 
-            //hearts view
+
+            //life view
 
             <LinearLayout
                 android:layout_width="180dp"
@@ -59,6 +57,25 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="right">
+
+
+                <TextView
+                    android:id="@+id/main_TXT_score"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="15dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textColor="#C85A54"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
 
@@ -80,57 +97,49 @@
                     android:id="@+id/main_IMG_rock00"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"  />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock10"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock20"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock30"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
                 <ImageView
                     android:id="@+id/main_IMG_rock40"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock50"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock60"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock70"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -145,58 +154,50 @@
                     android:id="@+id/main_IMG_rock01"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock11"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock21"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
 
                 <ImageView
                     android:id="@+id/main_IMG_rock31"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock41"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock51"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock61"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock71"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -211,57 +212,49 @@
                     android:id="@+id/main_IMG_rock02"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
                 <ImageView
                     android:id="@+id/main_IMG_rock12"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock22"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock32"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
                 <ImageView
                     android:id="@+id/main_IMG_rock42"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock52"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock62"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
                 <ImageView
                     android:id="@+id/main_IMG_rock72"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -277,57 +270,49 @@
                     android:id="@+id/main_IMG_rock03"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
                 <ImageView
                     android:id="@+id/main_IMG_rock13"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock23"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock33"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock43"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock53"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock63"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock73"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -342,58 +327,50 @@
                     android:id="@+id/main_IMG_rock04"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1"/>
 
                 <ImageView
                     android:id="@+id/main_IMG_rock14"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock24"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock34"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock44"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
 
                 <ImageView
                     android:id="@+id/main_IMG_rock54"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock64"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/main_IMG_rock74"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:srcCompat="@drawable/poop" />
+                    android:layout_weight="1" />
 
             </LinearLayout>
 

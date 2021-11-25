@@ -3,6 +3,7 @@ package com.example.CrazyRoadGame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.media.AudioRecord;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,11 +12,14 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageView[][] main_IMG_rockMat;
     private ImageView[] main_IMG_playerPos;
     private ImageButton[] main_BTN_arrows;
-    private ArrayList<String> mat_IMG_link;
+    private ArrayList<Integer> mat_IMG_id;
+    private TextView main_TXT_score;
 
     private Player thePlayer;
-    private ArrayList<Rock> allRocks;
+    private ArrayList<FlowingItem> allItems;
     private static final int ROCK_MAT_ROW = 8;
     private static final int ROCK_MAT_COL = 5;
 
@@ -37,31 +42,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            Rock rock = new Rock();
-            allRocks.add(rock);
-            for (int i = 0; i < allRocks.size(); i++) {
-                if (allRocks.get(i) == null)
-                    continue;
-                else if (allRocks.get(i).getRow() <= ROCK_MAT_ROW) {
-                    updateRockUI(allRocks.get(i).getRow(), allRocks.get(i).getCol());
-                    if (allRocks.get(i).getRow() == ROCK_MAT_ROW) {
-                        if (checkHit(allRocks.get(i)) == 1)
-                            break;
-                        allRocks.remove(i);
-                        i--;
-                    } else
-                        allRocks.get(i).setRowNextLevel();
-                }
-            }
-            if (thePlayer.getNumOfLife() == 0) {
+            updateUiScore();
+            createCoin();
+            createRock();
+            dropItem();
+
+            if (thePlayer.getNumOfLife() == 0) {                     //game over
                 rockHandler.removeCallbacks(rockCreateRunnable);
-                setDefaultInvisible();
                 onStart();
             } else
                 rockHandler.postDelayed(this, ROCK_DELAY);       //r run again after delay(1s)
         }
-    };
 
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,16 +66,15 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
-
         setDefaultInvisible();
         thePlayer = new Player();
-        allRocks = new ArrayList<Rock>();
-        toast("start game");
-        startRockFlow();
+        allItems = new ArrayList<FlowingItem>();
+        updateUiScore();
+        toast("Start game");
+        rockHandler.postDelayed(rockCreateRunnable, ROCK_DELAY);
     }
 
     @Override
@@ -91,11 +83,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void create_mat_option() {
-        //0-invisible   1-poop  2-coin
-        mat_IMG_link = new ArrayList<>();
-        mat_IMG_link.add("");
-        mat_IMG_link.add("https://img.icons8.com/emoji/48/000000/pile-of-poo.png");
-        mat_IMG_link.add("https://img.icons8.com/emoji/48/000000/coin-emoji.png");
+        //   0-poop  1-coin
+        mat_IMG_id = new ArrayList<>();
+        mat_IMG_id.add(R.drawable.poop);
+        mat_IMG_id.add(R.drawable.coin1);
 
     }
 
@@ -131,8 +122,10 @@ public class MainActivity extends AppCompatActivity {
         main_BTN_arrows = new ImageButton[]{
                 findViewById(R.id.main_BTN_left_arrow),
                 findViewById(R.id.main_BTN_right_arrow)
-
         };
+
+        main_TXT_score = findViewById(R.id.main_TXT_score);
+
     }
 
     private void initViews() {
@@ -153,13 +146,14 @@ public class MainActivity extends AppCompatActivity {
                     .into(main_IMG_allLife[i]);
         }
 
+     /*
         //set rock IMG
         for (int i = 0; i < ROCK_MAT_ROW; i++) {
             for (int j = 0; j < ROCK_MAT_COL; j++) {
                 main_IMG_rockMat[i][j].setImageResource(R.drawable.poop);
             }
         }
-
+*/
 
         //set player IMG
         for (int i = 0; i < main_IMG_playerPos.length; i++) {
@@ -191,33 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 arrowClicked(finalI);
             });
         }
-    }
 
-    private void arrowClicked(int clickedPos) {
-        int nextPos;
-        int currentPos = thePlayer.getPos();
-
-        if (clickedPos == 0) {
-            if (currentPos == 0)
-                nextPos = currentPos;
-            else
-                nextPos = currentPos - 1;
-        }
-        else{
-            if (currentPos == ROCK_MAT_COL - 1)
-                nextPos = currentPos;
-            else
-                nextPos = currentPos + 1;
-        }
-
-        updatePlayerUI(currentPos, nextPos);
-        thePlayer.setPos(nextPos);
-
-    }
-
-    private void updatePlayerUI(int currentPos, int nextPos) {
-        main_IMG_playerPos[currentPos].setVisibility(View.INVISIBLE);
-        main_IMG_playerPos[nextPos].setVisibility(View.VISIBLE);
     }
 
     private void setDefaultInvisible() {
@@ -239,36 +207,103 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < main_IMG_allLife.length; i++) {
             main_IMG_allLife[i].setVisibility(View.VISIBLE);
         }
+
     }
 
-    private void updateRockUI(int rockRow, int rockCol) {
-        if (rockRow != 0)
-            main_IMG_rockMat[rockRow - 1][rockCol].setVisibility(View.INVISIBLE);
-        if (rockRow < ROCK_MAT_ROW) {
-            main_IMG_rockMat[rockRow][rockCol].setVisibility(View.VISIBLE);
+    private void updateUiScore() {
+        main_TXT_score.setText("score:"+thePlayer.getScore());
+    }
+
+    private void arrowClicked(int clickedPos) {
+        int nextPos;
+        int currentPos = thePlayer.getPos();
+
+        if (clickedPos == 0) {
+            if (currentPos == 0)
+                nextPos = currentPos;
+            else
+                nextPos = currentPos - 1;
+        } else {
+            if (currentPos == ROCK_MAT_COL - 1)
+                nextPos = currentPos;
+            else
+                nextPos = currentPos + 1;
+        }
+
+        updatePlayerUI(currentPos, nextPos);
+        thePlayer.setPos(nextPos);
+
+    }
+
+    private void createRock() {
+        FlowingItem rock = new FlowingItem(FlowingItem.ITEM_TYPE.ROCK);
+        allItems.add(rock);
+    }
+
+    private void createCoin() {
+        Random r = new Random();
+        if (r.nextInt(13) < 4) {
+            FlowingItem coin = new FlowingItem(FlowingItem.ITEM_TYPE.COIN);
+            allItems.add(coin);
         }
     }
 
-    private void startRockFlow() {
-        rockHandler.postDelayed(rockCreateRunnable, ROCK_DELAY);
-    }
+    private void dropItem() {
 
-    private int checkHit(Rock currentRock) {
-        int isGameOver = 0;
-        if (currentRock.getCol() == thePlayer.getPos()) {
-            thePlayer.setLifeAfterHit();
-            updateLifeUI();
-            if (thePlayer.getNumOfLife() == 0) {
-                isGameOver = 1;
+        for (int i = 0; i < allItems.size(); i++) {
+            allItems.get(i).setRowNextLevel();
+            if (allItems.get(i).getRow() <= ROCK_MAT_ROW) {
+                dropItemOnUI(allItems.get(i));
+                if (allItems.get(i).getRow() == ROCK_MAT_ROW) {
+                    checkHit(allItems.get(i));
+                    if (thePlayer.getNumOfLife() == 0)
+                        break;
+                    allItems.remove(i);
+                    i--;
+                }
             }
         }
-        return isGameOver;
+    }
+
+    private void updatePlayerUI(int currentPos, int nextPos) {
+        main_IMG_playerPos[currentPos].setVisibility(View.INVISIBLE);
+        main_IMG_playerPos[nextPos].setVisibility(View.VISIBLE);
+    }
+
+    private void dropItemOnUI(FlowingItem currentItem) {
+        int ItemRow = currentItem.getRow();
+        int ItemCol = currentItem.getCOL();
+
+        if (ItemRow != 0)
+            main_IMG_rockMat[ItemRow - 1][ItemCol].setVisibility(View.INVISIBLE);
+        if (ItemRow < ROCK_MAT_ROW) {
+            main_IMG_rockMat[ItemRow][ItemCol].setVisibility(View.VISIBLE);
+            Glide
+                    .with(this)
+                    .load(mat_IMG_id.get(currentItem.getITEM_TYPE().ordinal()))
+                    .into(main_IMG_rockMat[ItemRow][ItemCol]);
+        }
     }
 
     private void updateLifeUI() {
         main_IMG_allLife[thePlayer.getNumOfLife()].setVisibility(View.INVISIBLE);
         vibrate();
         toast("hoe shit!");
+    }
+
+    private void checkHit(FlowingItem currentItem) {
+
+        if (currentItem.getCOL() == thePlayer.getPos()) {       //hit
+            switch (currentItem.getITEM_TYPE()) {
+                case ROCK:
+                    thePlayer.hitRock();
+                    updateLifeUI();
+                    break;
+                case COIN:
+                    thePlayer.hitCoin(1);
+                    break;
+            }
+        }
     }
 
     private void vibrate() {

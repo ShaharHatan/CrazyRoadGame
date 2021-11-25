@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/shaha/AndroidStudioProjects/CrazyRoadGame/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/shaha/AndroidStudioProjects/CrazyRoadGame/app/src/main/res/font/bad_script.xml" value="0.13177083333333334" />
+        <entry key="..\:/Users/shaha/AndroidStudioProjects/CrazyRoadGame/app/src/main/res/layout/activity_main.xml" value="0.4074074074074074" />
         <entry key="..\:/Users/shaha/AndroidStudioProjects/CrazyRoadGame/app/src/main/res/layout/activity_the_game.xml" value="0.1546875" />
       </map>
     </option>
