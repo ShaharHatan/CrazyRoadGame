@@ -32,7 +32,7 @@ public class Player {
     }
 
     public void hitCoin(int coinVal){
-        score=+coinVal;
+        score+=coinVal;
     }
 
     public int getScore() {

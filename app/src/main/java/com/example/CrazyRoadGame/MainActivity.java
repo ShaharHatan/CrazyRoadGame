@@ -3,7 +3,7 @@ package com.example.CrazyRoadGame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.media.AudioRecord;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            updateUiScore();
             createCoin();
             createRock();
             dropItem();
@@ -99,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.main_BTN_life2),
                 findViewById(R.id.main_BTN_life3)
         };
+
 
         main_IMG_rockMat = new ImageView[][]{
                 {findViewById(R.id.main_IMG_rock00), findViewById(R.id.main_IMG_rock01), findViewById(R.id.main_IMG_rock02), findViewById(R.id.main_IMG_rock03), findViewById(R.id.main_IMG_rock04)},
@@ -211,7 +210,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUiScore() {
-        main_TXT_score.setText("score:"+thePlayer.getScore());
+        int score=thePlayer.getScore();
+        main_TXT_score.setText("score:"+score);
     }
 
     private void arrowClicked(int clickedPos) {
@@ -301,8 +301,24 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case COIN:
                     thePlayer.hitCoin(1);
+                    updateUiScore();
                     break;
             }
+            updateSoundUI(currentItem);
+        }
+    }
+
+    private void updateSoundUI(FlowingItem currentItem) {
+        MediaPlayer sound =null;
+        switch (currentItem.getITEM_TYPE()){
+            case ROCK:
+                sound= MediaPlayer.create(MainActivity.this, R.raw.rock_hit_sound);
+                sound.start();
+                break;
+            case COIN:
+                sound = MediaPlayer.create(MainActivity.this, R.raw.coin_sound);
+                sound.start();
+                break;
         }
     }
 
