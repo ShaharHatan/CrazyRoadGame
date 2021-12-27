@@ -1,4 +1,4 @@
-package com.example.CrazyRoadGame;
+package com.example.CrazyRoadGame.model.game;
 
 import java.util.Random;
 

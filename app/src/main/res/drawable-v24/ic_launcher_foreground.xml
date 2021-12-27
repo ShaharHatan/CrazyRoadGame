@@ -6,19 +6,19 @@
     android:viewportHeight="512">
 
     <path
-        android:fillColor="#4DE1FF"
+        android:fillColor="@color/light_blue_400"
         android:pathData="M 256 0 C 397.384895957 0 512 114.615104043 512 256 C 512 397.384895957 397.384895957 512 256 512 C 114.615104043 512 0 397.384895957 0 256 C 0 114.615104043 114.615104043 0 256 0 Z" />
     <path
-        android:fillColor="#FF6E36"
+        android:fillColor="@color/myPurple"
         android:pathData="M 83.349 213.802 H 100.228 V 264.439 H 83.349 V 213.802 Z" />
     <path
-        android:fillColor="#FF6E36"
+        android:fillColor="@color/myPurple"
         android:pathData="M 156.492 213.802 H 173.371 V 264.439 H 156.492 V 213.802 Z" />
     <path
-        android:fillColor="#FF6E36"
+        android:fillColor="@color/myPurple"
         android:pathData="M 411.772 213.802 H 428.651 V 264.439 H 411.772 V 213.802 Z" />
     <path
-        android:fillColor="#FF6E36"
+        android:fillColor="@color/myPurple"
         android:pathData="M 338.629 213.802 H 355.508 V 264.439 H 338.629 V 213.802 Z" />
     <path
         android:fillColor="#9FC657"
@@ -27,7 +27,7 @@
         android:fillColor="#7FB21E"
         android:pathData="M478.242,256H312.264v181.703h71.722C441,397.47,478.242,331.086,478.242,256z" />
     <path
-        android:fillColor="#096C80"
+        android:fillColor="#424242"
         android:pathData="M199.736,256l-71.722,181.703C164.2,463.236,208.346,478.242,256,478.242s91.8-15.006,127.985-40.539 L312.264,256H199.736z" />
     <path
         android:fillColor="#FFFFFF"
@@ -51,6 +51,6 @@
         android:fillColor="#405A0F"
         android:pathData="M420.207,118.105c10.876,0,19.692,8.817,19.692,19.692v64.752c0,10.876-8.817,19.692-19.692,19.692 s-19.692-8.817-19.692-19.692v-64.752C400.515,126.922,409.331,118.105,420.207,118.105z" />
     <path
-        android:fillColor="#FFD170"
+        android:fillColor="#FFA000"
         android:pathData="M 256 33.758 C 280.858888875 33.758 301.011 53.9101111254 301.011 78.769 C 301.011 103.627888875 280.858888875 123.78 256 123.78 C 231.141111125 123.78 210.989 103.627888875 210.989 78.769 C 210.989 53.9101111254 231.141111125 33.758 256 33.758 Z" />
 </vector>

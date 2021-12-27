@@ -13,7 +13,11 @@ public class MSP {
         preferences = context.getApplicationContext().getSharedPreferences(SP_FILE, Context.MODE_PRIVATE);
     }
 
-    public static MSP getInstance(Context context) {
+    public static MSP getInstance(){
+        return msp;
+    }
+
+    public static MSP init(Context context) {
         if (msp == null) {
             msp = new MSP(context);
         }

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue_400"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:scrollbarFadeDuration="250"
+    tools:context=".MenuActivity">
+
+
+    <TextView
+        android:id="@+id/menu_TXT_mainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:fontFamily="@font/slackey"
+        android:gravity="center"
+        android:text="Crazy Road"
+        android:textColor="@color/myPurple"
+        android:textSize="54dp" />
+
+    <TextView
+        android:id="@+id/menu_TXT_secondTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/slackey"
+        android:text="Are you ready for this?"
+        android:textColor="@color/myPurple"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/menu_IMG_logo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4" />
+
+
+    <Button
+        android:id="@+id/menu_BTN_startGameButton"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="30dp"
+        android:layout_weight="1.5"
+        android:fontFamily="@font/slackey"
+        android:text="START GAME!"
+        android:textColor="@color/myPurple"
+        android:textSize="30dp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/menu_RDB_radioEasy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/myPurpleLight"
+            android:fontFamily="@font/slackey"
+            android:text="Easy"
+            android:textColor="@color/myPurple"
+            android:textSize="17dp"
+            android:layout_marginHorizontal="15dp"/>
+
+        <RadioButton
+            android:id="@+id/menu_RDB_radioHard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/slackey"
+            android:textColor="@color/myPurple"
+            android:buttonTint="@color/myPurpleLight"
+            android:textSize="17dp"
+            android:text="Hard"
+            android:layout_marginHorizontal="15dp"/>
+    </RadioGroup>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="30dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/menu_SWC_sensorMode"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="40dp"
+            android:fontFamily="@font/slackey"
+            android:text="sensor mode"
+            android:textColor="@color/myPurple"
+            android:textSize="18dp"
+            android:textAlignment="viewEnd"
+            app:thumbTint="@color/myPurpleLight" />
+
+
+
+        <Button
+            android:id="@+id/menu_BTN_recordsTableButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:fontFamily="@font/slackey"
+            android:text="Records Table"
+            android:textColor="@color/myPurple"
+            android:textSize="17dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

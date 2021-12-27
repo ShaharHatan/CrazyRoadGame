@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".model.records.ListFragment">
+
+    <!--title layout-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/light_blue_400"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:text="Date"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="3.5"
+            android:gravity="center_vertical"
+            android:text="Name"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="Score"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/location_world" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--scroll layout-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--0-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--1-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--2-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--3-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--4-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--5-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="6"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--6-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="7"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--7-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--8-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="9"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+            <!--9-row layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_blue_100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_date9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_name9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fragRec_TXT_score9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp" />
+
+                <ImageButton
+                    android:id="@+id/fragRec_BTN_location9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/red_location" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

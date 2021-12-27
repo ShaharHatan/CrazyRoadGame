@@ -1,8 +1,13 @@
-package com.example.CrazyRoadGame;
+package com.example.CrazyRoadGame.model.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,42 +21,81 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.CrazyRoadGame.R;
+import com.example.CrazyRoadGame.model.splash.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+
+public class GameActivity extends AppCompatActivity {
 
     private ImageView main_IMG_background;
-    private ImageView[] main_IMG_allLife;
+    private ImageView[] main_IMG_allLife, main_IMG_playerPos;
     private ImageView[][] main_IMG_rockMat;
-    private ImageView[] main_IMG_playerPos;
     private ImageButton[] main_BTN_arrows;
     private ArrayList<Integer> mat_IMG_id;
     private TextView main_TXT_score;
 
-    private Player thePlayer;
-    private ArrayList<FlowingItem> allItems;
-    private static final int ROCK_MAT_ROW = 8;
-    private static final int ROCK_MAT_COL = 5;
+    private final int MOVE_LEFT = 0, MOVE_RIGHT = 1;
+    private final double SENSOR_LIMIT_LEFT = 2, SENSOR_LIMIT_RIGHT = -2 , LIMIT_DELTA = 0.8;
+    private SensorManager sensorManager;
+    private Sensor sensor;
+    private float currX, firstX,lastX;
+    private boolean isFirstX;
+    private SensorEventListener SEL = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (isFirstX) {
+                firstX = event.values[0];
+                isFirstX = false;
+                currX=firstX;
+            }
+            // x = [0]      y = [1]     z = [2]
+            lastX=currX;
+            currX = event.values[0];
+            float deltaByFirst = currX - firstX;
+            float deltaByLast = currX-lastX;
+            if(Math.abs(deltaByLast) > LIMIT_DELTA) {
+                if (deltaByFirst >= SENSOR_LIMIT_LEFT) {
+                    //then move car left
+                    moveCar(MOVE_LEFT);
+                } else if (deltaByFirst <= SENSOR_LIMIT_RIGHT) {
+                    //then move car right
+                    moveCar(MOVE_RIGHT);
+                }
+            }
+        }
 
-    private static final long ROCK_DELAY = 1000;     //1000ms=1s
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
+    private boolean isSensorMood;
+
+    public static final int ROCK_DELAY_EASY = 1000;     //1000ms=1s
+    public static final int ROCK_DELAY_HARD = 600;     //700ms=0.6s
+    private final int ROCK_MAT_ROW = 8, ROCK_MAT_COL = 5;
+    private Player thePlayer;
+    private MediaPlayer sound;
+    private ArrayList<FlowingItem> allItems;
+    private Bundle bundle;
+    private int speed;
     private Handler rockHandler = new Handler();
     private Runnable rockCreateRunnable = new Runnable() {
         @Override
         public void run() {
-
             createCoin();
             createRock();
             dropItem();
 
             if (thePlayer.getNumOfLife() == 0) {                     //game over
                 rockHandler.removeCallbacks(rockCreateRunnable);
-                onStart();
+                gameDone();
             } else
-                rockHandler.postDelayed(this, ROCK_DELAY);       //r run again after delay(1s)
+                rockHandler.postDelayed(this, speed);       //r run again after delay(speed sec)
         }
-
     };
 
     @Override
@@ -62,22 +106,99 @@ public class MainActivity extends AppCompatActivity {
         create_mat_option();
         findViews();
         initViews();
+        //To identify the sensors that are on a device you first need to
+        // get a reference to the sensor service. To do this, you create
+        // an instance of the SensorManager class by calling the
+        // getSystemService() method and passing in the SENSOR_SERVICE argument.
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        setDefaultInvisible();
+        bundle = getIntent().getBundleExtra("location");
+        setDefaultVisibility();
         thePlayer = new Player();
         allItems = new ArrayList<FlowingItem>();
+        isFirstX = true;
         updateUiScore();
-        toast("Start game");
-        rockHandler.postDelayed(rockCreateRunnable, ROCK_DELAY);
+        isSensorMood = bundle.getBoolean("isAccSensor", false);
+        if (isSensorMood && isSensorExists(Sensor.TYPE_ACCELEROMETER)) {
+            initSensor();
+            toast("Start game on sensor mode");
+        } else {
+            initArrowButtons();
+            toast("Start game on arrows mode");
+        }
+        speed = bundle.getInt("difficulty", ROCK_DELAY_EASY);
+        rockHandler.postDelayed(rockCreateRunnable, speed);
+    }
+
+
+    private void initArrowButtons() {
+        main_BTN_arrows = new ImageButton[]{
+                findViewById(R.id.main_BTN_left_arrow),
+                findViewById(R.id.main_BTN_right_arrow)
+        };
+
+        //set left arrows IMG
+        Glide
+                .with(this)
+                .load(R.drawable.left_arrow)
+                .into(main_BTN_arrows[0]);
+
+        //set right arrows IMG
+        Glide
+                .with(this)
+                .load(R.drawable.right_arrow)
+                .into(main_BTN_arrows[1]);
+
+
+        //setOnClickListener - arrows
+        // 0 - left      1 - right
+        for (int i = 0; i < main_BTN_arrows.length; i++) {
+            int finalI = i;
+            main_BTN_arrows[i].setOnClickListener(v -> {
+                moveCar(finalI);
+            });
+        }
+    }
+
+    private void initSensor() {
+
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        sensorManager.registerListener(SEL, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    //check if the sensorType is exist on the device
+    public boolean isSensorExists(int sensorType) {
+        return (sensorManager.getDefaultSensor(sensorType) != null);
+    }
+
+    private void gameDone() {
+        sound.stop();
+       unregisterSensor();
+        bundle.putInt("score", thePlayer.getScore());
+        Intent intentGame = new Intent(this, SplashActivity.class);
+        intentGame.putExtra("gameToSplash", bundle);
+        startActivity(intentGame);
+        finish();
+    }
+
+    private void unregisterSensor(){
+        if (isSensorMood)
+            sensorManager.unregisterListener(SEL);
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    public void onBackPressed() {
+        super.onBackPressed();
+        rockHandler.removeCallbacks(rockCreateRunnable);
+        if(sound!=null)
+                sound.stop();
+        unregisterSensor();
+        finish();
     }
 
     private void create_mat_option() {
@@ -118,11 +239,6 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.main_IMG_playerPos4)
         };
 
-        main_BTN_arrows = new ImageButton[]{
-                findViewById(R.id.main_BTN_left_arrow),
-                findViewById(R.id.main_BTN_right_arrow)
-        };
-
         main_TXT_score = findViewById(R.id.main_TXT_score);
 
     }
@@ -145,14 +261,6 @@ public class MainActivity extends AppCompatActivity {
                     .into(main_IMG_allLife[i]);
         }
 
-     /*
-        //set rock IMG
-        for (int i = 0; i < ROCK_MAT_ROW; i++) {
-            for (int j = 0; j < ROCK_MAT_COL; j++) {
-                main_IMG_rockMat[i][j].setImageResource(R.drawable.poop);
-            }
-        }
-*/
 
         //set player IMG
         for (int i = 0; i < main_IMG_playerPos.length; i++) {
@@ -163,31 +271,9 @@ public class MainActivity extends AppCompatActivity {
                     .into(main_IMG_playerPos[i]);
         }
 
-
-        //set left arrows IMG
-        Glide
-                .with(this)
-                .load(R.drawable.left_arrow)
-                .into(main_BTN_arrows[0]);
-
-        //set right arrows IMG
-        Glide
-                .with(this)
-                .load(R.drawable.right_arrow)
-                .into(main_BTN_arrows[1]);
-
-
-        //setOnClickListener - arrows
-        for (int i = 0; i < main_BTN_arrows.length; i++) {
-            int finalI = i;
-            main_BTN_arrows[i].setOnClickListener(v -> {
-                arrowClicked(finalI);
-            });
-        }
-
     }
 
-    private void setDefaultInvisible() {
+    private void setDefaultVisibility() {
 
         //set all rocks INVISIBLE
         for (int i = 0; i < ROCK_MAT_ROW; i++) {
@@ -210,19 +296,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUiScore() {
-        int score=thePlayer.getScore();
-        main_TXT_score.setText("score:"+score);
+        int score = thePlayer.getScore();
+        main_TXT_score.setText("score:" + score);
     }
 
-    private void arrowClicked(int clickedPos) {
+    private void moveCar(int desiredPos) {
         int nextPos;
         int currentPos = thePlayer.getPos();
 
-        if (clickedPos == 0) {
+        if (desiredPos == MOVE_LEFT) {
             if (currentPos == 0)
                 nextPos = currentPos;
             else
                 nextPos = currentPos - 1;
+            //MOVE_RIGHT
         } else {
             if (currentPos == ROCK_MAT_COL - 1)
                 nextPos = currentPos;
@@ -232,7 +319,6 @@ public class MainActivity extends AppCompatActivity {
 
         updatePlayerUI(currentPos, nextPos);
         thePlayer.setPos(nextPos);
-
     }
 
     private void createRock() {
@@ -309,14 +395,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateSoundUI(FlowingItem currentItem) {
-        MediaPlayer sound =null;
-        switch (currentItem.getITEM_TYPE()){
+        sound = null;
+        switch (currentItem.getITEM_TYPE()) {
             case ROCK:
-                sound= MediaPlayer.create(MainActivity.this, R.raw.rock_hit_sound);
+                sound = MediaPlayer.create(GameActivity.this, R.raw.rock_hit_sound);
                 sound.start();
                 break;
             case COIN:
-                sound = MediaPlayer.create(MainActivity.this, R.raw.coin_sound);
+                sound = MediaPlayer.create(GameActivity.this, R.raw.coin_sound);
                 sound.start();
                 break;
         }
@@ -336,5 +422,4 @@ public class MainActivity extends AppCompatActivity {
     private void toast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
-
 }

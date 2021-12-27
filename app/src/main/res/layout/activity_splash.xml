@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue_400"
+    android:orientation="vertical"
+    tools:context=".model.splash.SplashActivity">
+
+
+    <TextView
+        android:id="@+id/splash_TXT_isEnterRT"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:fontFamily="@font/slackey"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/myPurple"
+        android:text="It's a new Record!"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/splash_TXT_score"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/slackey"
+        android:textColor="@color/myPurple"
+        android:text="your score is: 2"
+        android:textSize="30dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="90dp" />
+
+    <ImageView
+        android:id="@+id/splash_IMG_theImage"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/move_poop2"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

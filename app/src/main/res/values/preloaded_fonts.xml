@@ -2,6 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/bad_script</item>
+        <item>@font/codystar_light</item>
         <item>@font/londrina_outline</item>
+        <item>@font/slackey</item>
     </array>
 </resources>
